@@ -1,12 +1,17 @@
 var request = require("request");
 
-request("https://www.google.com", function (err, res, body) {
-    if (err) {
-        console.log("Something went wrong!!");
-        console.log(err);
-    } else {
-        if (res.statusCode == 200) {
-            console.log(res.body);
-        }
+request("http://jsonplaceholder.typicode.com/users/1", (err, res, body) => {
+
+    // eval(require('locus'));
+    if (!err && res.statusCode == 200) {
+        // console.log(body);
+        // console.log(typeof body);
+        var parsedData = JSON.parse(body);
+        // console.log(typeof parsedData);
+        console.log("Name : " + parsedData['name']);
+        console.log(parsedData.name + "lives in " + parsedData.address.city);
+        console.log();
+        console.log("Placeholder Line Syntax");
+        console.log(`${parsedData.name} live in ${parsedData.address.city}`);
     }
 });
